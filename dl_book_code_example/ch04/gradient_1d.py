@@ -4,6 +4,12 @@ import matplotlib.pylab as plt
 
 
 def numerical_diff(f, x):
+    """
+        数值微分
+    :param f:  函数
+    :param x:
+    :return:
+    """
     h = 1e-4 # 0.0001
     return (f(x+h) - f(x-h)) / (2*h)
 
@@ -23,7 +29,7 @@ y = function_1(x)
 plt.xlabel("x")
 plt.ylabel("f(x)")
 
-tf = tangent_line(function_1, 5)
+tf = tangent_line(function_1, 10)
 y2 = tf(x)
 
 plt.plot(x, y)
