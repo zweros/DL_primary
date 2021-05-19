@@ -49,7 +49,7 @@ def numerical_gradient(f, x):
         tmp_val = x[idx]
         x[idx] = float(tmp_val) + h
         fxh1 = f(x)  # f(x+h)
-        print('idx = ', idx, 'x = ', x, 'x[idx] = ', x[idx])
+        # print('idx = ', idx, 'x = ', x, 'x[idx] = ', x[idx])
         x[idx] = tmp_val - h
         fxh2 = f(x)  # f(x-h)
         grad[idx] = (fxh1 - fxh2) / (2 * h)

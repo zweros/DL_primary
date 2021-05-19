@@ -8,7 +8,17 @@ from common.functions import sigmoid, softmax
 
 
 def get_data():
+    # 设 置 3 个 参 数。第 1 个参数
+    # normalize设置是否将输入图像正规化为0.0～1.0的值。如果将该参数设置
+    # 为False，则输入图像的像素会保持原来的0～255。第2个参数flatten设置
+    # 是否展开输入图像（变成一维数组）。如果将该参数设置为False，则输入图
+    # 像为1 × 28 × 28的三维数组；若设置为True，则输入图像会保存为由784个
+    # 元素构成的一维数组。
     (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
+    print(x_train.shape)
+    print(t_train.shape)
+    print(x_test.shape)
+    print(t_test.shape)
     return x_test, t_test
 
 
