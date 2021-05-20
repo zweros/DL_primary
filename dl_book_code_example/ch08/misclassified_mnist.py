@@ -54,7 +54,7 @@ for i, val in enumerate(classified_ids == t_test):
             break
 
 print("======= misclassified result =======")
-print("{view index: (label, inference), ...}")
+print("{view 01tensors.py: (label, inference), ...}")
 print(mis_pairs)
 
 plt.show()
