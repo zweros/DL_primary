@@ -50,6 +50,10 @@ def imshow(img):
 
 
 if __name__ == '__main__':
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print(device)
+
+    # 正则化
     transform = transforms.Compose(
         [transforms.ToTensor(),
          transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
@@ -77,6 +81,7 @@ if __name__ == '__main__':
     # print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
     net = Net()
+    net.to(device)
 
     import torch.optim as optim
 
@@ -92,8 +97,8 @@ if __name__ == '__main__':
             # zero the parameter gradients
             optimizer.zero_grad()
             # forward + backward + optimize
-            outputs = net(inputs)
-            loss = criterion(outputs, labels)
+            outputs = net(inputs.to(device))
+            loss = criterion(outputs, labels.to(device))
             loss.backward()
             optimizer.step()
 
@@ -114,7 +119,7 @@ if __name__ == '__main__':
     # print labels
     print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
-    outputs = net(images)
+    outputs = net(images.to(device))
 
     _, predicted = torch.max(outputs, 1)
     print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
@@ -125,7 +130,7 @@ if __name__ == '__main__':
     with torch.no_grad():
         for data in testloader:
             images, labels = data
-            outputs = net(images)
+            outputs = net(images.to(device))
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
