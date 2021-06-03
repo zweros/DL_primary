@@ -2,7 +2,8 @@
 https://pytorch123.com/SecondSection/neural_networks/
 神经网络可以通过 torch.nn 包来构建。
 
-现在对于自动梯度(autograd)有一些了解，神经网络是基于自动梯度 (autograd)来定义一些模型。一个 nn.Module 包括层和一个方法 forward(input) 它会返回输出(output)。
+现在对于自动梯度(autograd)有一些了解，神经网络是基于自动梯度 (autograd)来定义一些模型。
+一个 nn.Module 包括层和一个方法 forward(input) 它会返回输出(output)。
 
 例如，看一下数字图片识别的网络：
 """

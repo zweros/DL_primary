@@ -39,8 +39,9 @@ z = y * y * 3 + 1
 out = z.mean()
 print(z, out)
 
+print("===========================")
 # .requires_grad_( ... ) 会改变张量的 requires_grad 标记。输入的标记默认为 False ，如果没有提供相应的参数。
-a = torch.randn(2, 2)
+a = torch.ones(3)
 a = ((a * 3) / (a - 1))
 # False
 print(a.requires_grad)
