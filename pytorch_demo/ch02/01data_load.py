@@ -30,16 +30,16 @@ img_name = landmarks_frame.iloc[n, 0]
 # landmarks = landmarks_frame.iloc[n, 1:].as_matrix()))
 # 报错 https://www.cnblogs.com/wydxry/p/13417652.html
 landmarks = landmarks_frame.iloc[n, 1:].values
+# 面部点集合有 68 点
 landmarks = landmarks.astype('float').reshape(-1, 2)
 
 print('Image name: {}'.format(img_name))
 print('Landmarks shape: {}'.format(landmarks.shape))
 print('First 4 Landmarks: {}'.format(landmarks[:4]))
 
-
-# plt.figure()
-# show_landmarks(io.imread(os.path.join('data/faces/', img_name)), landmarks)
-# plt.show()
+plt.figure()
+show_landmarks(io.imread(os.path.join('data/faces/', img_name)), landmarks)
+plt.show()
 
 
 class FaceLandmarksDataset(Dataset):
@@ -61,6 +61,7 @@ class FaceLandmarksDataset(Dataset):
     def __getitem__(self, idx):
         img_name = os.path.join(self.root_dir,
                                 self.landmarks_frame.iloc[idx, 0])
+        print('图片路径：img_name = ', img_name)
         image = io.imread(img_name)
         landmarks = self.landmarks_frame.iloc[idx, 1:]
         landmarks = np.array([landmarks])
