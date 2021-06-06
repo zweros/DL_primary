@@ -61,12 +61,12 @@ if __name__ == '__main__':
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                             download=False, transform=transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
-                                              shuffle=True, num_workers=1)
+                                              shuffle=True, num_workers=0)
 
     testset = torchvision.datasets.CIFAR10(root='./data', train=False,
                                            download=False, transform=transform)
     testloader = torch.utils.data.DataLoader(testset, batch_size=4,
-                                             shuffle=False, num_workers=1)
+                                             shuffle=False, num_workers=0)
 
     classes = ('plane', 'car', 'bird', 'cat',
                'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
@@ -88,7 +88,7 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
     # optimizer = optim.(net.parameters(), lr=0.001, momentum=0.9)
     optimizer = optim.Adam(net.parameters(), lr=0.001)
-    for epoch in range(10):  # loop over the dataset multiple times
+    for epoch in range(100):  # loop over the dataset multiple times
 
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
@@ -115,9 +115,9 @@ if __name__ == '__main__':
     images, labels = dataiter.next()
 
     # show images
-    imshow(torchvision.utils.make_grid(images))
+    # imshow(torchvision.utils.make_grid(images))
     # print labels
-    print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
+    # print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
     outputs = net(images.to(device))
 
